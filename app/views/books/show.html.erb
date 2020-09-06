@@ -4,6 +4,17 @@
 		  <p style="color: green"><%= flash[:notice] %></p>
 		<% end %>
 
+		<% if @book.errors.any? %>
+     <div>
+        <h2><%= @book.errors.count %>error</h2>
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+		<% end %>
+
 		<div class="col-xs-3">
 			<!-- User info用のview-->
 	    <h2>User info</h2>
@@ -26,7 +37,7 @@
 
 	    <!-- New book用のview -->
 	    <h2>New book</h2>
-	    <%= form_for(@book) do |f| %>
+	    <%= form_for(@book_new) do |f| %>
 	      <div class="field">
           <%= f.label :Title %>
           <%= f.text_field :title, class: 'col-xs-12' %>

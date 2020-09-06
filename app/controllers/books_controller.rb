@@ -14,13 +14,13 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id), notice: "You have creatad book successfully."
     else
       @books = Book.all
-      flash[:notice] = 'error'
       render :index
     end
   end
 
   def show
   	@book = Book.find(params[:id])
+    @book_new = Book.new
   end
 
   def edit
@@ -36,7 +36,6 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id), notice: "You have updated book successfully."
     else
       @books = Book.all
-      flash[:notice] = 'error'
       render :edit
     end
   end

@@ -3,8 +3,19 @@
 		<h2>User info</h2>
 
 		<% if flash[:notice] %>
-		  <p><%= flash[:notice] %></p>
+		  <p style="color: green"><%= flash[:notice] %></p>
 		<% end %>
+
+    <% if @user.errors.any? %>
+     <div>
+        <h2><%= @user.errors.count %>error</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
 		<%= form_for(@user) do |f| %>
       <label>Name</label>

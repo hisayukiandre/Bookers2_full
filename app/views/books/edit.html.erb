@@ -2,9 +2,16 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<h1>Editing Book</h1>
-			<% if flash[:notice] %>
-			  <h3 style="color:red"><%= flash[:notice] %></h3>
-			<% end %>
+			<% if @book.errors.any? %>
+        <div>
+          <h2><% @book.errors.count %>error</h2>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
         <div class="field">

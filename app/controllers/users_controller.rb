@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     if @book.save
       redirect_to book_path(@book.id), notice: "You have creatad book successfully."
     else
-      flash[:notice] = "error"
       render template: "books/index"
     end
   end
@@ -40,7 +39,6 @@ class UsersController < ApplicationController
   	if @user.update(user_params)
   	  redirect_to user_path(@user.id), notice: "You have updated user successfully."
     else
-      flash[:notice] = "error"
       render :edit
     end
   end
